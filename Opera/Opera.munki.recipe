@@ -4,6 +4,8 @@
 <dict>
     <key>Input</key>
     <dict>
+        <key>APP_DESTINATION</key>
+        <string>/Applications</string>
         <key>IDENTIFIER</key>
         <string>com.github.bochoven.recipes.Opera.munki</string>
         <key>NAME</key>
