@@ -105,9 +105,8 @@ class OperaUpdateInfoProvider(Processor):
         except:
             raise ProcessorError("Error parsing XML from Opera Update feed.")
 
-        items = xmldata.findall("product/files/file/download/")
-
-        version = xmldata.find("product/files/file/version").text
+        items = xmldata.findall(".//primary")
+        version = xmldata.find(".//version").text
 
         versions = []
         for item_elem in items:
