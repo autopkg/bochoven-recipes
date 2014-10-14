@@ -19,7 +19,7 @@
                 <string>testing</string>
             </array>
             <key>category</key>
-            <string>web</string>
+            <string>Productivity</string>
             <key>description</key>
             <string>A web browser developed by Opera Software.</string>
             <key>developer</key>
@@ -41,8 +41,6 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
                 <key>purge_destination</key>
                 <true/>
             </dict>
@@ -53,7 +51,7 @@
             <key>Arguments</key>
             <dict>
                 <key>dmg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/%NAME%.dmg</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
                 <key>dmg_root</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%</string>
             </dict>
