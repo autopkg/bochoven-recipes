@@ -14,7 +14,7 @@
         <string>Opera autoupdate agent/1.0.0</string>
     </dict>
     <key>MinimumVersion</key>
-    <string>0.2.1</string>
+    <string>0.4.1</string>
     <key>Process</key>
     <array>
         <dict>
@@ -43,6 +43,30 @@
         <dict>
             <key>Processor</key>
             <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>purge_destination</key>
+                <true/>
+            </dict>
+            <key>Processor</key>
+            <string>Unarchiver</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Opera.app</string>
+                <!--
+                The requirement string can be found with codesign:
+                codesign --display -v -r- /Volumes/Opera/Opera.app
+                -->
+                <key>requirement</key>
+                <string>identifier "com.operasoftware.Opera" and certificate leaf = H"261cd515406974afa19778f62e5d916ec977ebf4"</string>
+            </dict>
         </dict>
     </array>
 </dict>
