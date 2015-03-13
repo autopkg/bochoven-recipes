@@ -32,11 +32,6 @@
             <string>OperaUpdateInfoProvider</string>
         </dict>
         <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>filename</key>
-                <string>Opera-%VERSION%.zip</string>
-            </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
         </dict>
