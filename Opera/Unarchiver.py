@@ -79,6 +79,29 @@ class Unarchiver(Processor):
         equal to or greater than that'''
         return LooseVersion(this) >= LooseVersion(that)
 
+    def find_path_for_relpath(self, relpath):
+        '''Searches for the relative path.
+        Search order is:
+            RECIPE_CACHE_DIR
+            RECIPE_DIR
+            PARENT_RECIPE directories'''
+        cache_dir = self.env.get('RECIPE_CACHE_DIR')
+        recipe_dir = self.env.get('RECIPE_DIR')
+        search_dirs = [cache_dir, recipe_dir]
+        if self.env.get("PARENT_RECIPES"):
+            # also look in the directories containing the parent recipes
+            parent_recipe_dirs = list(
+                set([os.path.dirname(item)
+                     for item in self.env["PARENT_RECIPES"]]))
+            search_dirs.extend(parent_recipe_dirs)
+        for directory in search_dirs:
+            test_item = os.path.join(directory, relpath)
+            if os.path.exists(test_item):
+                return os.path.normpath(test_item)
+
+        raise ProcessorError("Can't find %s" % relpath)
+
+
     def main(self):
         """Unarchive a file"""
         # handle some defaults for archive_path and destination_path
@@ -123,6 +146,7 @@ class Unarchiver(Processor):
                 "'%s' is not valid for the 'archive_format' variable. "
                 "Must be one of %s." % (fmt, ", ".join(EXTNS.keys())))
 
+        stdin=None
         if fmt == "zip":
             cmd = ["/usr/bin/ditto",
                    "--noqtn",
@@ -142,17 +166,27 @@ class Unarchiver(Processor):
             elif fmt.endswith("bzip2"):
                 cmd.append("-j")
             elif fmt.endswith("xz"):
-                # If we're on 10.9 and up, we have builtin xz support
-                darwin_version = os.uname()[2]
-                if not self.version_equal_or_greater(darwin_version, '13.0.0'):
-                    raise ProcessorError(
-                        "No support for .xz archives on OS X < 10.9")
+                cmd = ["/usr/bin/tar",
+                   "-x",
+                   "-C",
+                   destination_path]
+                xz_cmd = [self.find_path_for_relpath('xz'),
+                            "--stdout",
+                            "--decompress",
+                            archive_path]
+                proc_xz = subprocess.Popen(xz_cmd, 
+                                    stdout=subprocess.PIPE)
+                stdin=proc_xz.stdout
 
         # Call command.
         try:
+
             proc = subprocess.Popen(cmd,
+                                    stdin=stdin,
                                     stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE)
+            if stdin:
+                proc_xz.stdout.close()
             (_, stderr) = proc.communicate()
         except OSError as err:
             raise ProcessorError(
