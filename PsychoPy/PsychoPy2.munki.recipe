@@ -20,6 +20,8 @@
 			<array>
 				<string>testing</string>
 			</array>
+			<key>category</key>
+			<string>Scientific Software</string>
 			<key>description</key>
 			<string>For running psychology and neuroscience experiments</string>
 			<key>developer</key>
