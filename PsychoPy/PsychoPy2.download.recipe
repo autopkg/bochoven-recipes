@@ -24,6 +24,8 @@
 			<dict>
 				<key>github_repo</key>
 				<string>%GITHUB_REPO%</string>
+				<key>asset_regex</key>
+				<string>^StandalonePsychoPy-.*-OSX_64bit.dmg$</string>
 			</dict>
 			<key>Processor</key>
 			<string>GitHubReleasesInfoProvider</string>
