@@ -55,12 +55,10 @@
             <dict>
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Opera.app</string>
-                <!--
-                The requirement string can be found with codesign:
-                codesign --display -v -r- /Volumes/Opera/Opera.app
-                -->
                 <key>requirement</key>
                 <string>identifier "com.operasoftware.Opera" and certificate leaf = H"261cd515406974afa19778f62e5d916ec977ebf4"</string>
+                <key>requirement-comment</key>
+                <string>The requirement string can be found with codesign: `codesign --display -v -r- /Volumes/Opera/Opera.app`</string>
             </dict>
         </dict>
     </array>
