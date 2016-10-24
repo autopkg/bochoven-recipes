@@ -28,6 +28,16 @@
 			<string>ExpanDrive</string>
 			<key>name</key>
 			<string>%NAME%</string>
+			<key>postinstall_script</key>
+			<string>#!/bin/bash
+# Copy the strongfuse.fs filesystem files per instructions by ExpandDrive
+cp -r /Applications/ExpanDrive.app/Contents/Resources/strongfuse.fs /Library/Filesystems &amp;&amp; chmod +s /Library/Filesystems/strongfuse.fs/Contents/Resources/load_strongfuse /Library/Filesystems/strongfuse.fs/Contents/Resources/mount_strongfuse
+			</string>
+			<key>postuninstall_script</key>
+			<string>#!/bin/bash
+# Remove the strongfuse.fs filesystem files
+rm -rf /Library/Filesystems/strongfuse.fs
+			</string>
 			<key>unattended_install</key>
 			<true/>
 		</dict>
