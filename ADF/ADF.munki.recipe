@@ -29,7 +29,7 @@
 			<key>developer</key>
 			<string>SCM</string>
 			<key>display_name</key>
-			<string>%BASENAME%%BASEVERSION%</string>
+			<string>%BASENAME% %BASEVERSION%</string>
 			<key>name</key>
 			<string>%BASENAME%%BASEVERSION%</string>
 			<key>unattended_install</key>
