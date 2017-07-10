@@ -23,7 +23,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>re_pattern</key>
-				<string>https?:\/\/static.jasp-stats.org/(JASP-[\d\.]+).dmg</string>
+				<string>a class="btn btn-primary" href="https://jasp-stats.org/releases/(JASP-[\d\.]+).dmg</string>
 				<key>url</key>
 				<string>%DOWNLOAD_URL%</string>
 			</dict>
@@ -36,7 +36,7 @@
 				<key>filename</key>
 				<string>%match%.dmg</string>
 				<key>url</key>
-				<string>https://static.jasp-stats.org/%match%.dmg</string>
+				<string>https://jasp-stats.org/releases/%match%.dmg</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLDownloader</string>
