@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest surfdrive</string>
+	<key>Identifier</key>
+	<string>com.github.bochoven.recipes.download.surfdrive</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>Surfdrive</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.2.9</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>appcast_url</key>
+				<string>https://surfdrive.surf.nl/client-updater/</string>
+				<key>appcast_query_pairs</key>
+				<dict>
+					<key>version</key>
+					<string>2.1.1.687</string>
+					<key>platform</key>
+					<string>macos</string>
+					<key>oem</key>
+					<string>surfdrive</string>
+					<key>sparkle</key>
+					<string>true</string>
+				</dict>
+			</dict>
+			<key>Processor</key>
+			<string>SparkleUpdateInfoProvider</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>purge_destination</key>
+				<true/>
+			</dict>
+			<key>Processor</key>
+			<string>Unarchiver</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pattern</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/*.pkg</string>
+			</dict>
+			<key>Processor</key>
+			<string>FileFinder</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
+			<key>Arguments</key>
+			<dict>
+				<key>input_path</key>
+				<string>%found_filename%</string>
+				<key>expected_authority_names</key>
+				<array>
+					<string>Developer ID Installer: ownCloud Inc. (9B5WD74GWJ)</string>
+					<string>Developer ID Certification Authority</string>
+					<string>Apple Root CA</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>EndOfCheckPhase</string>
+		</dict>
+	</array>
+</dict>
+</plist>
