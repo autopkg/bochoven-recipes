@@ -11,7 +11,7 @@
 		<key>NAME</key>
 		<string>webdrive</string>
 		<key>SPARKLE_FEED_URL</key>
-		<string>http://www.webdrive.com/appcasts/webdrive4.xml</string>
+		<string>https://www.southrivertech.com/appcasts/webdrive16.xml</string>
 		<key>USER_AGENT</key>
 		<string>WebDrive for Mac/4.21 Sparkle/313</string>
 	</dict>
