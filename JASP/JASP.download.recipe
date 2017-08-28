@@ -36,7 +36,7 @@
 				<key>filename</key>
 				<string>%match%.dmg</string>
 				<key>url</key>
-				<string>https://jasp-stats.org/releases/%match%.dmg</string>
+				<string>https://static.jasp-stats.org/%match%.dmg</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLDownloader</string>
