@@ -36,17 +36,15 @@
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.6.1</string>
+	<key>ParentRecipe</key>
+	<string>com.github.bochoven.recipes.download.DisplayLink</string>
 	<key>Process</key>
 	<array>
-		<dict>
-				<key>Processor</key>
-				<string>PackageRequired</string>
-		</dict>
 		<dict>
 			<key>Arguments</key>
 			<dict>
 				<key>flat_pkg_path</key>
-				<string>%PKG%/DisplayLink Software Installer.pkg</string>
+				<string>%found_filename%/DisplayLink Software Installer.pkg</string>
 				<key>destination_path</key>
 				<string>%RECIPE_CACHE_DIR%/unpack</string>
 				<key>purge_destination</key>
@@ -91,7 +89,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>pkg_path</key>
-				<string>%PKG%</string>
+				<string>%found_filename%</string>
 				<key>repo_subdirectory</key>
 				<string>%MUNKI_REPO_SUBDIR%</string>
 			</dict>
