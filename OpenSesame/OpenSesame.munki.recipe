@@ -38,6 +38,11 @@
 			<string>%MUNKI_CATEGORY%</string>
 			<key>developer</key>
 			<string>%MUNKI_DEVELOPER%</string>
+			<key>postinstall_script</key>
+<string>#!/bin/bash
+
+# Fix incorrect perms
+chmod +x /Applications/OpenSesame.app/Contents/MacOS/OpenSesame</string>
 		</dict>
 	</dict>
 	<key>Process</key>
