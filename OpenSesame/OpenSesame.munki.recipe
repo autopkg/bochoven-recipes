@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Download OpenSesame for macOS and import it to Munki</string>
+	<key>Identifier</key>
+	<string>com.github.bochoven.recipes.munki.OpenSesame</string>
+	<key>ParentRecipe</key>
+	<string>com.github.bochoven.recipes.download.OpenSesame</string>
+	<key>MinimumVersion</key>
+	<string>0.6.0</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>OpenSesame</string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>smathot/%NAME%</string>
+		<key>MUNKI_CATEGORY</key>
+		<string>Scientific Software</string>
+		<key>MUNKI_DEVELOPER</key>
+		<string>Sebastiaan Mathôt</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>description</key>
+			<string>OpenSesame is a program to create experiments for psychology, neuroscience, and experimental economics.</string>
+			<key>display_name</key>
+			<string>OpenSesame</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>unattended_install</key>
+			<true/>
+			<key>category</key>
+			<string>%MUNKI_CATEGORY%</string>
+			<key>developer</key>
+			<string>%MUNKI_DEVELOPER%</string>
+		</dict>
+	</dict>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%pathname%</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

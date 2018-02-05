@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of OpenSesame.</string>
+	<key>Identifier</key>
+	<string>com.github.bochoven.recipes.download.OpenSesame</string>
+	<key>Input</key>
+	<dict>
+				<key>NAME</key>
+				<string>OpenSesame</string>
+				<key>OS_VERSION</key>
+				<string>10.8</string>
+				<key>INCLUDE_PRERELEASES</key>
+				<string>true</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.2.0</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>os_version</key>
+				<string>%OS_VERSION%</string>
+				<key>include_prereleases</key>
+				<string>%INCLUDE_PRERELEASES%</string>
+				<key>github_repo</key>
+				<string>smathot/OpenSesame</string>
+				<key>asset_regex</key>
+				<string>^opensesame_.*dmg$</string>
+			</dict>
+			<key>Processor</key>
+			<string>GitHubReleasesInfoProvider</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>EndOfCheckPhase</string>
+		</dict>
+	</array>
+</dict>
+</plist>
