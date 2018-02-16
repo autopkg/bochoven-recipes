@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of VU-DAMS and imports it into Munki.</string>
+	<key>Identifier</key>
+	<string>com.github.bochoven.recipes.munki.VU-DAMS</string>
+	<key>Input</key>
+	<dict>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>vu/vu-dams</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>category</key>
+			<string>Scientific Software</string>
+			<key>description</key>
+			<string>VU-AMS Data, Analysis and Management Software. See the &lt;a href="http://www.vu-ams.nl"&gt;vu-ams website&lt;/a&gt; for more information.</string>
+			<key>developer</key>
+			<string>VU/FGB</string>
+			<key>display_name</key>
+			<string>VU-AMS Data, Analysis and Management Software</string>
+			<key>name</key>
+			<string>vu_dams</string>
+			<key>unattended_install</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.6.1</string>
+	<key>ParentRecipe</key>
+	<string>com.github.bochoven.recipes.download.VU-DAMS</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>dmg_path</key>
+				<string>%pathname%</string>
+			</dict>
+			<key>Processor</key>
+			<string>AppDmgVersioner</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+					<key>pkg_path</key>
+					<string>%dmg_path%</string>
+					<key>additional_pkginfo</key>
+					<dict>
+						<key>items_to_copy</key>
+						<array>
+							<dict>
+								<key>source_item</key>
+								<string>VU-DAMS.app</string>
+								<key>destination_path</key>
+								<string>/Applications</string>
+								<key>destination_item</key>
+								<string>VU-DAMS.app</string>
+							</dict>
+						</array>
+						<key>installs</key>
+						<array>
+							<dict>
+								<key>CFBundleShortVersionString</key>
+								<string>%version%</string>
+								<key>minosversion</key>
+								<string>10.6</string>
+								<key>path</key>
+								<string>/Applications/VU-DAMS.app</string>
+								<key>type</key>
+								<string>application</string>
+								<key>version_comparison_key</key>
+								<string>CFBundleShortVersionString</string>
+							</dict>
+						</array>
+					</dict>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%pathname%</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
