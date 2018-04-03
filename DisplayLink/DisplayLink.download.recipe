@@ -39,9 +39,10 @@
 					<string>fileId=%match%</string>
 					<string>-F</string>
 					<string>accept_submit=Accept</string>
+					<string>--location</string>
 				</array>
 				<key>filename</key>
-				<string>%NAME%.zip</string>
+				<string>%NAME%.dmg</string>
 				<key>url</key>
 				<string>http://www.displaylink.com/downloads/file?id=%match%</string>
 			</dict>
@@ -51,21 +52,8 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
-				<key>archive_path</key>
-				<string>%pathname%</string>
-				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/unzipped</string>
-				<key>purge_destination</key>
-				<true/>
-			</dict>
-			<key>Processor</key>
-			<string>Unarchiver</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
 				<key>pattern</key>
-				<string>%RECIPE_CACHE_DIR%/unzipped/*.dmg</string>
+				<string>%RECIPE_CACHE_DIR%/downloads/*.dmg</string>
 			</dict>
 			<key>Processor</key>
 			<string>FileFinder</string>
@@ -79,7 +67,7 @@
 				<string>%found_filename%/DisplayLink Software Installer.pkg</string>
 				<key>expected_authority_names</key>
 				<array>
-					<string>Developer ID Installer: DisplayLink Corp</string>
+					<string>Developer ID Installer: DisplayLink Corp (73YQY62QM3)</string>
 					<string>Developer ID Certification Authority</string>
 					<string>Apple Root CA</string>
 				</array>
