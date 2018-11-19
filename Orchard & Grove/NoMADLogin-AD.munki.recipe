@@ -1,60 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-    <key>Description</key>
-    <string>Imports SURFdrive into Munki.</string>
-    <key>Identifier</key>
-    <string>com.github.bochoven.recipes.munki.NoMADLogin-AD</string>
-    <key>Input</key>
-  	<dict>
-  		<key>MUNKI_NAME</key>
-  		<string>NoMADLogin-AD</string>
-  		<key>MUNKI_REPO_SUBDIR</key>
-  		<string>orchard_and_grove/NoMADLogin-AD</string>
-  		<key>MUNKI_CATEGORY</key>
-  		<string>IT Management Tools</string>
-  		<key>pkginfo</key>
-  		<dict>
-  			<key>catalogs</key>
-  			<array>
-  				<string>testing</string>
-  			</array>
-  			<key>category</key>
-  			<string>%MUNKI_CATEGORY%</string>
-  			<key>description</key>
-        <string>NoLoAD is a replacement login window for macOS 10.12 and higher.</string>
-  			<key>developer</key>
-  			<string>Orchard &amp; Grove</string>
-  			<key>display_name</key>
-  			<string>NoMADLogin-AD</string>
-        <key>minimum_os_version</key>
-        <string>10.12</string>
-  			<key>name</key>
-  			<string>%NAME%</string>
-        <key>preuninstall_script</key>
-        <string>/usr/local/bin/authchanger -reset</string>
-  			<key>unattended_install</key>
-  			<true/>
-  		</dict>
-  	</dict>
-  	<key>MinimumVersion</key>
-  	<string>0.2.9</string>
-  	<key>ParentRecipe</key>
-  	<string>com.github.bochoven.recipes.download.NoMADLogin-AD</string>
-  	<key>Process</key>
-  	<array>
-  		<dict>
-  			<key>Arguments</key>
-  			<dict>
-  				<key>pkg_path</key>
-  				<string>%found_filename%</string>
-  				<key>repo_subdirectory</key>
-  				<string>%MUNKI_REPO_SUBDIR%</string>
-  			</dict>
-  			<key>Processor</key>
-  			<string>MunkiImporter</string>
-  		</dict>
-  	</array>
-  </dict>
-  </plist>
+    <dict>
+        <key>Description</key>
+        <string>Imports SURFdrive into Munki.</string>
+        <key>Identifier</key>
+        <string>com.github.bochoven.recipes.munki.NoMADLogin-AD</string>
+        <key>Input</key>
+        <dict>
+            <key>MUNKI_NAME</key>
+            <string>NoMADLogin-AD</string>
+            <key>MUNKI_REPO_SUBDIR</key>
+            <string>orchard_and_grove/NoMADLogin-AD</string>
+            <key>MUNKI_CATEGORY</key>
+            <string>IT Management Tools</string>
+            <key>pkginfo</key>
+            <dict>
+                <key>catalogs</key>
+                <array>
+                    <string>testing</string>
+                </array>
+                <key>category</key>
+                <string>%MUNKI_CATEGORY%</string>
+                <key>description</key>
+                <string>NoLoAD is a replacement login window for macOS 10.12 and higher.</string>
+                <key>developer</key>
+                <string>Orchard &amp; Grove</string>
+                <key>display_name</key>
+                <string>NoMADLogin-AD</string>
+                <key>minimum_os_version</key>
+                <string>10.12</string>
+                <key>name</key>
+                <string>%NAME%</string>
+                <key>preuninstall_script</key>
+                <string>#!/bin/bash
+/usr/local/bin/authchanger -reset
+                </string>
+                <key>unattended_install</key>
+                <true/>
+            </dict>
+        </dict>
+        <key>MinimumVersion</key>
+        <string>0.2.9</string>
+        <key>ParentRecipe</key>
+        <string>com.github.bochoven.recipes.download.NoMADLogin-AD</string>
+        <key>Process</key>
+        <array>
+            <dict>
+                <key>Arguments</key>
+                <dict>
+                    <key>pkg_path</key>
+                    <string>%found_filename%</string>
+                    <key>repo_subdirectory</key>
+                    <string>%MUNKI_REPO_SUBDIR%</string>
+                </dict>
+                <key>Processor</key>
+                <string>MunkiImporter</string>
+            </dict>
+        </array>
+    </dict>
+</plist>
