@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Identifier</key>
+    <string>com.github.bochoven.recipes.Opera.munki</string>
     <key>Input</key>
     <dict>
         <key>APP_DESTINATION</key>
@@ -30,7 +32,7 @@
             <string>%NAME%</string>
             <key>postinstall_script</key>
             <string>#!/bin/bash
-                # Add directory traversal for the entire application and ensure 
+                # Add directory traversal for the entire application and ensure
                 # all executables are executable by group and other
                 /bin/chmod -R go+rX /Applications/Opera.app
             </string>
