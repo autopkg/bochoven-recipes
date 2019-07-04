@@ -66,7 +66,7 @@
 				<string>%found_filename%</string>
 				<key>expected_authority_names</key>
 				<array>
-					<string>Developer ID Installer: ownCloud Inc. (9B5WD74GWJ)</string>
+					<string>Developer ID Installer: ownCloud GmbH (4AP2STM4H5)</string>
 					<string>Developer ID Certification Authority</string>
 					<string>Apple Root CA</string>
 				</array>
