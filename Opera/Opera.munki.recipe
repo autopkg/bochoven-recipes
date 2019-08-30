@@ -28,12 +28,6 @@
             <string>Opera</string>
             <key>name</key>
             <string>%NAME%</string>
-            <key>postinstall_script</key>
-            <string>#!/bin/bash
-                # Add directory traversal for the entire application and ensure
-                # all executables are executable by group and other
-                /bin/chmod -R go+rX /Applications/Opera.app
-            </string>
             <key>unattended_install</key>
             <true/>
         </dict>
