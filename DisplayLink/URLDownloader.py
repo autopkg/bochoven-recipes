@@ -15,6 +15,7 @@
 # limitations under the License.
 """See docstring for URLDownloader class"""
 
+from __future__ import absolute_import
 import os.path
 import re
 import subprocess
@@ -149,7 +150,7 @@ class URLDownloader(Processor):
         if not os.path.exists(download_dir):
             try:
                 os.makedirs(download_dir)
-            except OSError, err:
+            except OSError as err:
                 raise ProcessorError(
                     "Can't create %s: %s" % (download_dir, err.strerror))
 
@@ -162,7 +163,7 @@ class URLDownloader(Processor):
         # this can cause issues if this item is eventually copied to a Munki repo
         # with the same permissions and the file is inaccessible by (for example)
         # the webserver.
-        os.chmod(pathname_temporary, 0644)
+        os.chmod(pathname_temporary, 0o644)
 
         # construct curl command.
         curl_cmd = [self.env['CURL_PATH'],

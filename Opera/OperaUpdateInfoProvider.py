@@ -15,6 +15,8 @@
 # limitations under the License.
 
 
+from __future__ import absolute_import
+from __future__ import print_function
 import urllib
 import urllib2
 import urlparse
@@ -57,7 +59,7 @@ class OperaUpdateInfoProvider(Processor):
         except:
             raise ProcessorError("Can't open URL %s" % request.get_full_url())
 
-        print request.get_full_url()
+        print(request.get_full_url())
         data = url_handle.read()
 
         # Todo, add a try catch block
