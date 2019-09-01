@@ -18,9 +18,13 @@
 from __future__ import absolute_import, print_function
 
 import json
-import urllib2
 
 from autopkglib import Processor, ProcessorError
+
+try:
+    from urllib.request import urlopen  # For Python 3
+except ImportError:
+    from urllib2 import urlopen  # For Python 2
 
 
 __all__ = ["OperaUpdateInfoProvider"]
@@ -50,12 +54,10 @@ class OperaUpdateInfoProvider(Processor):
 
         url = "https://autoupdate.geo.opera.com/netinstaller/Stable/MacOS"
 
-        request = urllib2.Request(url)
-
         try:
-            url_handle = urllib2.urlopen(request)
+            url_handle = urlopen(url)
         except:
-            raise ProcessorError("Can't open URL %s" % request.get_full_url())
+            raise ProcessorError("Can't open URL %s" % url)
 
         print(request.get_full_url())
         data = url_handle.read()
