@@ -15,15 +15,13 @@
 # limitations under the License.
 
 
-from __future__ import absolute_import
-from __future__ import print_function
-import urllib
-import urllib2
-import urlparse
-import os
+from __future__ import absolute_import, print_function
+
 import json
+import urllib2
 
 from autopkglib import Processor, ProcessorError
+
 
 __all__ = ["OperaUpdateInfoProvider"]
 
@@ -64,7 +62,7 @@ class OperaUpdateInfoProvider(Processor):
 
         # Todo, add a try catch block
         jsonData = json.loads(data)
-        
+
         item = {}
         item["version"] = 'latest'
         item["filename"] = jsonData['installer_filename']
@@ -82,7 +80,7 @@ class OperaUpdateInfoProvider(Processor):
         self.env["url"] = latest["url"]
         self.env["filename"] = latest["filename"]
         self.output("Found URL %s" % self.env["url"])
-        
+
 
 if __name__ == "__main__":
     processor = OperaUpdateInfoProvider()
