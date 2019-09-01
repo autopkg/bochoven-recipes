@@ -15,7 +15,7 @@
 # limitations under the License.
 
 
-from __future__ import absolute_import, print_function
+from __future__ import absolute_import
 
 import json
 
@@ -59,7 +59,7 @@ class OperaUpdateInfoProvider(Processor):
         except:
             raise ProcessorError("Can't open URL %s" % url)
 
-        print(request.get_full_url())
+        self.output(url)
         data = url_handle.read()
 
         # Todo, add a try catch block
