@@ -16,12 +16,13 @@
 """See docstring for Unarchiver class"""
 
 from __future__ import absolute_import
+
 import os
-import subprocess
 import shutil
+import subprocess
+from distutils.version import LooseVersion
 
 from autopkglib import Processor, ProcessorError
-from distutils.version import LooseVersion
 
 __all__ = ["Unarchiver"]
 
