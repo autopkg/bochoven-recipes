@@ -15,12 +15,14 @@
 # limitations under the License.
 """See docstring for Unarchiver class"""
 
+from __future__ import absolute_import
+
 import os
-import subprocess
 import shutil
+import subprocess
+from distutils.version import LooseVersion
 
 from autopkglib import Processor, ProcessorError
-from distutils.version import LooseVersion
 
 __all__ = ["Unarchiver"]
 
@@ -141,10 +143,10 @@ class Unarchiver(Processor):
                     % os.path.basename(archive_path))
             self.output("Guessed archive format '%s' from filename %s"
                         % (fmt, os.path.basename(archive_path)))
-        elif fmt not in EXTNS.keys():
+        elif fmt not in EXTNS:
             raise ProcessorError(
                 "'%s' is not valid for the 'archive_format' variable. "
-                "Must be one of %s." % (fmt, ", ".join(EXTNS.keys())))
+                "Must be one of %s." % (fmt, ", ".join(EXTNS)))
 
         stdin=None
         if fmt == "zip":
@@ -174,7 +176,7 @@ class Unarchiver(Processor):
                             "--stdout",
                             "--decompress",
                             archive_path]
-                proc_xz = subprocess.Popen(xz_cmd, 
+                proc_xz = subprocess.Popen(xz_cmd,
                                     stdout=subprocess.PIPE)
                 stdin=proc_xz.stdout
 
@@ -202,4 +204,3 @@ class Unarchiver(Processor):
 if __name__ == '__main__':
     PROCESSOR = Unarchiver()
     PROCESSOR.execute_shell()
-

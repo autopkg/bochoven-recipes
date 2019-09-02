@@ -15,13 +15,17 @@
 # limitations under the License.
 
 
-import urllib
-import urllib2
-import urlparse
-import os
+from __future__ import absolute_import
+
 import json
 
 from autopkglib import Processor, ProcessorError
+
+try:
+    from urllib.request import urlopen  # For Python 3
+except ImportError:
+    from urllib2 import urlopen  # For Python 2
+
 
 __all__ = ["OperaUpdateInfoProvider"]
 
@@ -50,19 +54,17 @@ class OperaUpdateInfoProvider(Processor):
 
         url = "https://autoupdate.geo.opera.com/netinstaller/Stable/MacOS"
 
-        request = urllib2.Request(url)
-
         try:
-            url_handle = urllib2.urlopen(request)
+            url_handle = urlopen(url)
         except:
-            raise ProcessorError("Can't open URL %s" % request.get_full_url())
+            raise ProcessorError("Can't open URL %s" % url)
 
-        print request.get_full_url()
+        self.output(url)
         data = url_handle.read()
 
         # Todo, add a try catch block
         jsonData = json.loads(data)
-        
+
         item = {}
         item["version"] = 'latest'
         item["filename"] = jsonData['installer_filename']
@@ -80,7 +82,7 @@ class OperaUpdateInfoProvider(Processor):
         self.env["url"] = latest["url"]
         self.env["filename"] = latest["filename"]
         self.output("Found URL %s" % self.env["url"])
-        
+
 
 if __name__ == "__main__":
     processor = OperaUpdateInfoProvider()
