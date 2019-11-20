@@ -13,7 +13,7 @@
 		<key>DOWNLOAD_URL</key>
 		<string>https://www.displaylink.com/downloads/macos</string>
 		<key>CURL</key>
-		<string>curl -v -F 'fileId=1033' -F 'accept_submit=Accept' https://www.displaylink.com/downloads/file?id=1033</string>
+		<string>curl -v -F 'fileId=1367' -F 'accept_submit=Accept' https://www.displaylink.com/downloads/file?id=1367</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
