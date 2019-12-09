@@ -11,7 +11,7 @@
             <key>NAME</key>
             <string>NoMAD-Login-AD</string>
             <key>URL</key>
-            <string>https://files.nomad.menu/NoMAD-Login-AD.zip</string>
+            <string>https://files.nomad.menu/NoMAD-Login-AD.pkg</string>
         </dict>
         <key>MinimumVersion</key>
         <string>0.2.9</string>
@@ -27,22 +27,19 @@
                 </dict>
             </dict>
             <dict>
+                <key>Processor</key>
+                <string>CodeSignatureVerifier</string>
                 <key>Arguments</key>
                 <dict>
-                    <key>purge_destination</key>
-                    <true/>
+                    <key>input_path</key>
+                    <string>%pathname%</string>
+                    <key>expected_authority_names</key>
+                    <array>
+                        <string>Developer ID Installer: Orchard &amp; Grove Inc. (VRPY9KHGX6)</string>
+                        <string>Developer ID Certification Authority</string>
+                        <string>Apple Root CA</string>
+                    </array>
                 </dict>
-                <key>Processor</key>
-                <string>Unarchiver</string>
-            </dict>
-            <dict>
-                <key>Arguments</key>
-                <dict>
-                    <key>pattern</key>
-                    <string>%RECIPE_CACHE_DIR%/%NAME%/%NAME%/NoMADLoginAD-*.pkg</string>
-                </dict>
-                <key>Processor</key>
-                <string>FileFinder</string>
             </dict>
         </array>
     </dict>
