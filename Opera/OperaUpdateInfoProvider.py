@@ -19,17 +19,11 @@ from __future__ import absolute_import
 
 import json
 
-from autopkglib import Processor, ProcessorError
-
-try:
-    from urllib.request import urlopen  # For Python 3
-except ImportError:
-    from urllib2 import urlopen  # For Python 2
-
+from autopkglib import Processor, ProcessorError, URLGetter
 
 __all__ = ["OperaUpdateInfoProvider"]
 
-class OperaUpdateInfoProvider(Processor):
+class OperaUpdateInfoProvider(URLGetter):
     description = "Provides URL to the latest stable version."
     input_variables = {}
     output_variables = {
@@ -55,20 +49,19 @@ class OperaUpdateInfoProvider(Processor):
         url = "https://autoupdate.geo.opera.com/netinstaller/Stable/MacOS"
 
         try:
-            url_handle = urlopen(url)
+            data = self.download(url)
         except:
             raise ProcessorError("Can't open URL %s" % url)
 
         self.output(url)
-        data = url_handle.read()
 
         # Todo, add a try catch block
-        jsonData = json.loads(data)
+        json_data = json.loads(data)
 
         item = {}
         item["version"] = 'latest'
-        item["filename"] = jsonData['installer_filename']
-        item["url"] = jsonData['installer']
+        item["filename"] = json_data['installer_filename']
+        item["url"] = json_data['installer']
 
         return item
 
@@ -78,6 +71,7 @@ class OperaUpdateInfoProvider(Processor):
 
         self.output("Version retrieved from opera xml: %s" % latest["version"])
 
+        # Todo: "VERSION" is not the same as declared output variable "version"
         self.env["VERSION"] = latest["version"]
         self.env["url"] = latest["url"]
         self.env["filename"] = latest["filename"]
