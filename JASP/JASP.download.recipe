@@ -23,7 +23,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>re_pattern</key>
-				<string>://static.jasp-stats.org/(JASP-[\d\.]+).dmg</string>
+				<string>://static.jasp-stats.org/(JASP-[\d\.]+(-Catalina)?).dmg</string>
 				<key>url</key>
 				<string>%DOWNLOAD_URL%</string>
 			</dict>
