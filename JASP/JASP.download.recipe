@@ -11,7 +11,7 @@
 	<key>Input</key>
 	<dict>
 		<key>DOWNLOAD_URL</key>
-		<string>https://jasp-stats.org/thank-you-2/</string>
+		<string>https://jasp-stats.org/thank-you-for-downloading-jasp-macos/</string>
 		<key>NAME</key>
 		<string>JASP</string>
 	</dict>
