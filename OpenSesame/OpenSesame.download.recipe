@@ -22,8 +22,6 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
-				<key>os_version</key>
-				<string>%OS_VERSION%</string>
 				<key>include_prereleases</key>
 				<string>%INCLUDE_PRERELEASES%</string>
 				<key>github_repo</key>
