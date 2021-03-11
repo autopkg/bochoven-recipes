@@ -48,8 +48,6 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
-					<key>pkg_path</key>
-					<string>%dmg_path%</string>
 					<key>additional_pkginfo</key>
 					<dict>
 						<key>items_to_copy</key>
