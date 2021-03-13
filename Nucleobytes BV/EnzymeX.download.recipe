@@ -11,7 +11,7 @@
 	<key>Input</key>
 	<dict>
 		<key>DOWNLOAD_URL</key>
-		<string>http://downloads.nucleobytes.com/enzymex.dmg</string>
+		<string>https://downloads.nucleobytes.com/enzymex.dmg</string>
 		<key>NAME</key>
 		<string>EnzymeX</string>
 	</dict>
