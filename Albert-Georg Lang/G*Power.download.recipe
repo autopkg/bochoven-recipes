@@ -12,6 +12,8 @@
 	<dict>
 		<key>DOWNLOAD_URL</key>
 		<string>https://www.gpower.hhu.de</string>
+		<key>DOWNLOAD_HOST</key>
+		<string>https://www.psychologie.hhu.de</string>
 		<key>NAME</key>
 		<string>G*Power</string>
 	</dict>
@@ -23,7 +25,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>re_pattern</key>
-				<string>/fileadmin\/.*/GPowerMac_[\d\.]+.zip</string>
+				<string>/fileadmin/\S+/GPowerMac_[\d\.]+.zip</string>
 				<key>url</key>
 				<string>%DOWNLOAD_URL%</string>
 			</dict>
@@ -36,7 +38,7 @@
 				<key>filename</key>
 				<string>%NAME%.zip</string>
 				<key>url</key>
-				<string>%DOWNLOAD_URL%%match%</string>
+				<string>%DOWNLOAD_HOST%%match%</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLDownloader</string>

@@ -21,9 +21,9 @@
 				<string>testing</string>
 			</array>
 			<key>description</key>
-			<string> </string>
+			<string>G*Power is a tool to compute statistical power analyses for many different t tests, F tests, χ² tests, z tests and some exact tests. G*Power can also be used to compute effect sizes and to display graphically the results of power analyses.</string>
 			<key>developer</key>
-			<string>Albert-Georg Lang</string>
+			<string>The G*Power Team</string>
 			<key>display_name</key>
 			<string>G*Power</string>
 			<key>name</key>
