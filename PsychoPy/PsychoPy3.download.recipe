@@ -14,6 +14,11 @@
 		<string>psychopy/psychopy</string>
 		<key>NAME</key>
 		<string>PsychoPy3</string>
+		<key>curl_opts</key>
+		<array>
+			<string>--speed-time</string>
+			<string>120</string>
+		</array>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.6.1</string>
