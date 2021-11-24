@@ -21,7 +21,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>re_pattern</key>
-				<string>https:\/\/downloads.scm.com/Downloads/download%BASEVERSION%/bin/(adf%BASEVERSION%.[\d]+.macintel64.openmpi).dmg</string>
+				<string>https:\/\/downloads.scm.com/Downloads/download%BASEVERSION%/bin/((adf|ams)%BASEVERSION%.[\d]+.macintel64.openmpi).dmg</string>
 				<key>request_headers</key>
 				<dict>
 					<key>Authorization</key>
