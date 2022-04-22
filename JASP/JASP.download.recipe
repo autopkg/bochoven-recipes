@@ -5,7 +5,7 @@
 	<key>Comment</key>
 	<string>Created with Recipe Robot v1.0.3 (https://github.com/homebysix/recipe-robot)</string>
 	<key>Description</key>
-	<string>Downloads the latest version of JASP.</string>
+	<string>Downloads the latest Intel version of JASP.</string>
 	<key>Identifier</key>
 	<string>com.github.bochoven.recipes.download.JASP</string>
 	<key>Input</key>
@@ -14,6 +14,8 @@
 		<string>https://jasp-stats.org/thank-you-for-downloading-jasp-macos/</string>
 		<key>NAME</key>
 		<string>JASP</string>
+		<key>ARCHITECTURE</key>
+		<string>x86_64</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.6.1</string>
@@ -23,7 +25,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>re_pattern</key>
-				<string>://static.jasp-stats.org/(JASP-[\d\.]+-?\w*).dmg</string>
+				<string>://static.jasp-stats.org/(JASP-[\d\.]+-macOS-%ARCHITECTURE%).dmg</string>
 				<key>url</key>
 				<string>%DOWNLOAD_URL%</string>
 			</dict>
