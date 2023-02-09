@@ -56,7 +56,7 @@
                 <key>input_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/Opera.app</string>
                 <key>requirement</key>
-                <string>identifier "com.operasoftware.Opera" and certificate leaf = H"cdf1c39967986616b6cd64c6bd04833a9cb7450d"</string>
+                <string>identifier "com.operasoftware.Opera" and certificate leaf = H"89584386993936e6f38e64eed006f705f2570cbf" or certificate leaf = H"cdf1c39967986616b6cd64c6bd04833a9cb7450d"</string>
                 <key>requirement-comment</key>
                 <string>The requirement string can be found with codesign: `codesign --display -v -r- /Volumes/Opera/Opera.app`</string>
             </dict>
