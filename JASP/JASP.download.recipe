@@ -35,6 +35,19 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
+				<key>re_pattern</key>
+				<string>://static.jasp-stats.org/JASP-(\d+(\.\d+)+)+-macOS-%ARCHITECTURE%.dmg</string>
+				<key>url</key>
+				<string>%DOWNLOAD_URL%</string>
+				<key>result_output_var_name</key>
+				<string>current_version</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLTextSearcher</string>
+		</dict>		
+		<dict>
+			<key>Arguments</key>
+			<dict>
 				<key>filename</key>
 				<string>%match%.dmg</string>
 				<key>url</key>
