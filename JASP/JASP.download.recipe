@@ -25,17 +25,6 @@
 			<key>Arguments</key>
 			<dict>
 				<key>re_pattern</key>
-				<string>://static.jasp-stats.org/(JASP-[\d\.]+-macOS-%ARCHITECTURE%).dmg</string>
-				<key>url</key>
-				<string>%DOWNLOAD_URL%</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLTextSearcher</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>re_pattern</key>
 				<string>://static.jasp-stats.org/JASP-(\d+(\.\d+)+)+-macOS-%ARCHITECTURE%.dmg</string>
 				<key>url</key>
 				<string>%DOWNLOAD_URL%</string>
@@ -49,9 +38,9 @@
 			<key>Arguments</key>
 			<dict>
 				<key>filename</key>
-				<string>%match%.dmg</string>
+				<string>JASP-%current_version%-macOS-%ARCHITECTURE%.dmg</string>
 				<key>url</key>
-				<string>https://static.jasp-stats.org/%match%.dmg</string>
+				<string>https://static.jasp-stats.org/JASP-%current_version%-macOS-%ARCHITECTURE%.dmg</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLDownloader</string>
