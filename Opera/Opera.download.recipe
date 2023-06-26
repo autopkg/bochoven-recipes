@@ -44,6 +44,8 @@
             <dict>
                 <key>purge_destination</key>
                 <true/>
+                <key>archive_format</key>
+                <string>tar</string>
             </dict>
             <key>Processor</key>
             <string>Unarchiver</string>
