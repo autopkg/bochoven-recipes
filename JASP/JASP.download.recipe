@@ -36,7 +36,7 @@ ARCHITECTURE variable use: Intel "x86_64" or Apple Silicon "arm64"</string>
 			<key>Arguments</key>
 			<dict>
 				<key>filename</key>
-				<string>%NAME%-%version%.dmg</string>
+				<string>%NAME%_%ARCHITECTURE%-%version%.dmg</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLDownloader</string>
