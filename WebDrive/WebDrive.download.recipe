@@ -30,7 +30,18 @@
 		</dict>
 		<dict>
 			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
+			<string>CodeSignatureVerifier</string>
+			<key>Arguments</key>
+			<dict>
+				<key>input_path</key>
+				<string>%pathname%</string>
+				<key>expected_authorities</key>
+				<array>
+					<string>Developer ID Installer: South River Technologies (3HVJ8D4999)</string>
+					<string>Developer ID Certification Authority</string>
+					<string>Apple Root CA</string>
+				</array>
+			</dict>
 		</dict>
 	</array>
 </dict>
