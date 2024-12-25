@@ -5,20 +5,20 @@
 	<key>Comment</key>
 	<string>Created with Recipe Robot v1.0.3 (https://github.com/homebysix/recipe-robot)</string>
 	<key>Description</key>
-	<string>Downloads the latest version of PsychoPy3.</string>
+	<string>Downloads the latest version of PsychoPy.
+	
+As of December 2024, valid values for PY_VERS include:
+- 3.8
+- 3.10
+</string>
 	<key>Identifier</key>
 	<string>com.github.bochoven.recipes.download.PsychoPy3</string>
 	<key>Input</key>
 	<dict>
-		<key>GITHUB_REPO</key>
-		<string>psychopy/psychopy</string>
+		<key>PY_VERS</key>
+		<string>3.10</string>
 		<key>NAME</key>
 		<string>PsychoPy3</string>
-		<key>curl_opts</key>
-		<array>
-			<string>--speed-time</string>
-			<string>120</string>
-		</array>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.6.1</string>
@@ -28,9 +28,9 @@
 			<key>Arguments</key>
 			<dict>
 				<key>github_repo</key>
-				<string>%GITHUB_REPO%</string>
+				<string>psychopy/psychopy</string>
 				<key>asset_regex</key>
-				<string>^StandalonePsychoPy-.*-macOS.dmg$</string>
+				<string>^StandalonePsychoPy-[\d\.]+-macOS-%PY_VERS%\.dmg$</string>
 			</dict>
 			<key>Processor</key>
 			<string>GitHubReleasesInfoProvider</string>
