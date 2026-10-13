@@ -8,8 +8,8 @@
     <dict>
         <key>NAME</key>
         <string>Opera</string>
-        <key>UPDATE_URL</key>
-        <string>https://autoupdate.geo.opera.com/</string>
+        <key>LISTING_URL</key>
+        <string>https://get.geo.opera.com/pub/opera/desktop/</string>
         <key>USER_AGENT</key>
         <string>Opera autoupdate agent/1.0.0</string>
     </dict>
@@ -20,8 +20,8 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>update_url</key>
-                <string>%UPDATE_URL%</string>
+                <key>listing_url</key>
+                <string>%LISTING_URL%</string>
                 <key>request_headers</key>
                 <dict>
                     <key>user-agent</key>
@@ -42,13 +42,15 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>purge_destination</key>
+                <key>source_path</key>
+                <string>%pathname%/Opera.app</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/Opera.app</string>
+                <key>overwrite</key>
                 <true/>
-                <key>archive_format</key>
-                <string>tar</string>
             </dict>
             <key>Processor</key>
-            <string>Unarchiver</string>
+            <string>Copier</string>
         </dict>
         <dict>
             <key>Processor</key>
