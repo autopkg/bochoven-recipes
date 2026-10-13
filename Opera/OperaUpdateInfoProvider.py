@@ -17,15 +17,36 @@
 
 from __future__ import absolute_import
 
-import json
+import re
 
-from autopkglib import Processor, ProcessorError, URLGetter
+from autopkglib import ProcessorError, URLGetter
 
 __all__ = ["OperaUpdateInfoProvider"]
 
+DEFAULT_LISTING_URL = "https://get.geo.opera.com/pub/opera/desktop/"
+
+
 class OperaUpdateInfoProvider(URLGetter):
-    description = "Provides URL to the latest stable version."
-    input_variables = {}
+    description = (
+        "Provides the URL of the latest stable universal Opera Setup.dmg, "
+        "found via the public release mirror."
+    )
+    input_variables = {
+        "listing_url": {
+            "required": False,
+            "description": (
+                "Directory listing of stable Opera releases. "
+                "Default: %s" % DEFAULT_LISTING_URL
+            ),
+        },
+        "update_url": {
+            "required": False,
+            "description": (
+                "Deprecated and ignored. The autoupdate.geo.opera.com "
+                "netinstaller feed no longer accepts GET requests."
+            ),
+        },
+    }
     output_variables = {
         "url": {
             "description": "URL for a download.",
@@ -34,47 +55,66 @@ class OperaUpdateInfoProvider(URLGetter):
             "description": "Application version.",
         },
         "filename": {
-            "description": "Filename for the zip file.",
-        }
+            "description": "Filename for the disk image.",
+        },
     }
 
     __doc__ = description
 
-    def get_feed_data(self, url):
-        """Returns a dict containing:
-            version: latest
-            url: Url for the zip archive
-        """
+    @staticmethod
+    def version_key(version):
+        return tuple(int(part) for part in version.split("."))
 
-        url = "https://autoupdate.geo.opera.com/netinstaller/Stable/MacOS"
-
+    def get_page(self, url):
         try:
-            data = self.download(url)
-        except:
-            raise ProcessorError("Can't open URL %s" % url)
+            return self.download(url, text=True)
+        except Exception as err:
+            raise ProcessorError("Can't open URL %s: %s" % (url, err))
 
-        self.output(url)
+    def get_feed_data(self, listing_url):
+        """Returns a dict containing:
+            version: latest stable version that has a macOS build
+            url: URL of the universal disk image
+            filename: filename of the disk image
+        """
+        listing = self.get_page(listing_url)
+        versions = sorted(
+            set(re.findall(r'href="(\d+(?:\.\d+)+)/"', listing)),
+            key=self.version_key,
+            reverse=True,
+        )
+        if not versions:
+            raise ProcessorError("No versions found at %s" % listing_url)
 
-        # Todo, add a try catch block
-        json_data = json.loads(data)
+        # A version directory can exist before its macOS build is published,
+        # so take the newest one that actually contains a Setup.dmg.
+        for version in versions:
+            filename = "Opera_%s_Setup.dmg" % version
+            mac_url = "%s%s/mac/" % (listing_url, version)
+            try:
+                page = self.download(mac_url, text=True)
+            except Exception:
+                continue
+            if filename in page:
+                return {
+                    "version": version,
+                    "filename": filename,
+                    "url": mac_url + filename,
+                }
 
-        item = {}
-        item["version"] = 'latest'
-        item["filename"] = json_data['installer_filename']
-        item["url"] = json_data['installer']
-
-        return item
+        raise ProcessorError("No macOS Setup.dmg found at %s" % listing_url)
 
     def main(self):
+        listing_url = self.env.get("listing_url") or DEFAULT_LISTING_URL
+        if not listing_url.endswith("/"):
+            listing_url += "/"
 
-        latest = self.get_feed_data(self.env.get("update_url"))
+        latest = self.get_feed_data(listing_url)
 
-        self.output("Version retrieved from opera xml: %s" % latest["version"])
-
-        # Todo: "VERSION" is not the same as declared output variable "version"
-        self.env["VERSION"] = latest["version"]
+        self.env["version"] = latest["version"]
         self.env["url"] = latest["url"]
         self.env["filename"] = latest["filename"]
+        self.output("Found version %s" % latest["version"])
         self.output("Found URL %s" % self.env["url"])
 
 
