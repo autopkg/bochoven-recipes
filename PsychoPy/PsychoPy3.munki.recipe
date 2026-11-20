@@ -16,6 +16,10 @@
 		<string>PsychoPy3</string>
 		<key>pkginfo</key>
 		<dict>
+			<key>blocking_applications</key>
+			<array>
+				<string>PsychoPy.app</string>
+			</array>
 			<key>catalogs</key>
 			<array>
 				<string>testing</string>
@@ -30,7 +34,13 @@
 			<string>PsychoPy3</string>
 			<key>name</key>
 			<string>%NAME%</string>
+			<key>supported_architectures</key>
+			<array>
+				<string>%DOWNLOAD_ARCH%</string>
+			</array>
 			<key>unattended_install</key>
+			<true/>
+			<key>unattended_uninstall</key>
 			<true/>
 		</dict>
 	</dict>
